@@ -1,0 +1,131 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "nome": "Camila",
+      "sobrenome": "Souza",
+      "sexo": "feminino",
+      "datanascimento": "1998-01-03",
+      "cpf": "12345678910",
+      "email": "camilasouza@example.com",
+      "senha": "123",
+      "endereco": "Avenida Rio Branco",
+      "complemento": "numero 10 - apto 01",
+      "cep": "01001-000"
+    },
+    {
+      "id": "2",
+      "nome": "Daniel",
+      "sobrenome": "Silva",
+      "sexo": "masculino",
+      "datanascimento": "1982-04-10",
+      "cpf": "12345678911",
+      "email": "danielsilva@example.com",
+      "senha": "senha234",
+      "endereco": "Rua Catarina",
+      "complemento": "numero 70",
+      "cep": "14523-245"
+    },
+    {
+      "id": "3",
+      "nome": "Gabriel",
+      "sobrenome": "Amorim",
+      "sexo": "masculino",
+      "datanascimento": "1991-08-03",
+      "cpf": "12345678912",
+      "email": "gabrielamorim@example.com",
+      "senha": "senha567",
+      "endereco": "Rua Epitacio Pessoa",
+      "complemento": "numero 100",
+      "cep": "89521-458"
+    },
+    {
+      "id": "4",
+      "nome": "Beatriz",
+      "sobrenome": "Ferreira",
+      "sexo": "feminino",
+      "datanascimento": "1975-01-09",
+      "cpf": "12345678913",
+      "email": "beatrizferreira@example.com",
+      "senha": "senha891",
+      "endereco": "Avenida do Estado",
+      "complemento": "numero 56 - apto 87",
+      "cep": "89255-700"
+    },
+    {
+      "id": "5",
+      "nome": "Davy",
+      "sobrenome": "Carvalho",
+      "sexo": "masculino",
+      "datanascimento": "1990-08-07",
+      "cpf": "12345678914",
+      "email": "davycarvalho@example.com",
+      "senha": "senha777",
+      "endereco": "Avenida Brasil",
+      "complemento": "numero 1180",
+      "cep": "89255-700"
+    }
+  ],
+  "locais": [
+    {
+      "id": "6",
+      "nomelocal": "Lagoa do Peri",
+      "cep": "88010-102",
+      "endereço": "Rod. Francisco Thomaz dos Santos",
+      "numero": "3150",
+      "cidade": "Florianópolis",
+      "latitude": "-27.732435",
+      "longitude": "-48.525032",
+      "descricao": "Lagoa de água doce em parque natural com área de lazer, bar, snacks, churrasqueiras e mais.",
+      "userId": "1"
+    },
+    {
+      "id": "7",
+      "nomelocal": "Mirante Morro das Pedras",
+      "cep": "88066-000",
+      "endereco": "Rod. Francisco Thomaz dos Santos",
+      "numero": "2210",
+      "cidade": "Florianópolis",
+      "descricao": "Ótimo lugar para ver o nascer do sol ou somente apreciar o barulho das ondas quebrando nas pedras",
+      "latitude": "-27.720663",
+      "longitude": "-48.503634",
+      "userId": "2"
+    },
+    {
+      "id": "8",
+      "nomelocal": "Trilha Praia do Gravatá",
+      "cep": "88061-700",
+      "endereco": "Rod. Jorn. Manoel de Menezes",
+      "numero": "1640",
+      "cidade": "Florianópolis",
+      "descricao": "Uma trilha de acesso moderado (30min) com poucas subidas. Visual muito bonito",
+      "latitude": "-27.607534",
+      "longitude": "-48.441059",
+      "userId": "3"
+    },
+    {
+      "id": "9",
+      "nomelocal": "Parque Estadual do Rio Vermelho",
+      "cep": "88010-102",
+      "endereco": "Rod. João Gualberto Soares",
+      "numero": "s/n",
+      "cidade": "Florianópolis",
+      "descricao": "Reserva de conservação com acampamentos e trilhas ecológicas através de florestas tropicais e restingas",
+      "latitude": "-27.526897",
+      "longitude": "-48.427110",
+      "userId": "4"
+    },
+    {
+      "id": "10",
+      "nomelocal": "Dunas do Santinho",
+      "cep": "88058-701",
+      "endereco": "Servidão Manoel João da Silva",
+      "numero": "136",
+      "cidade": "Florianópolis",
+      "descricao": "Porção estreita de areia entre as praias dos Ingleses e do Santinho com dunas, pequenos lagos, restingas",
+      "latitude": "-27.446425",
+      "longitude": "-48.374285",
+      "userId": "5"
+    }
+  ]
+}

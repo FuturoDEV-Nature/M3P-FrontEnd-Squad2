@@ -1,0 +1,92 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.usuario-cadastro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff1c2;
+  border: 1px solid #900b09;
+  border-radius: 10px;
+}
+
+h2 {
+  color: #900b09;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.usuario-label {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.usuario-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  color: #333333;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.select-usuario {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+}
+
+.botoes-cadastrousuario {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-buscar,
+.btn-cadastrar {
+  flex: 1;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.btn-buscar {
+  background-color: #900b09;
+}
+
+.btn-cadastrar {
+  background-color: #14ae5c;
+  
+}

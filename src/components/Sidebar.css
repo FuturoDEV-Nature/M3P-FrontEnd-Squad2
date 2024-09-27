@@ -1,0 +1,77 @@
+.sidebar {
+  height: 100vh;
+  width: 240px;
+  background-color: #e5a000;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #900b09;
+}
+
+.titulo {
+  font-size: 20px;
+  color: #333;
+  text-align: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 100;
+  line-height: 100%;
+  color: #6b2f45;
+  mix-blend-mode: luminosity;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.quadro1 {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 12px;
+width: 150px;
+height: 450px;
+background: #FFF1C2;
+border-radius: 10px;
+flex: none;
+margin-left: 45px;
+margin: 0 auto;
+border: 1px solid #900b09;
+}
+
+.quadro {
+    background: #FFF1C2;
+    border-radius: 10px;
+}
+
+.quadro h2{
+    font-size: medium;
+}
+
+.quadro button{
+    font-size: 15px;
+    background-color:#FFF1C2 ;
+    border-radius: 5px;
+    border: 1px solid #900b09;
+}
+
+.quadro2 {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 0px;
+gap: 12px;
+width: 150px;
+height: 100px;
+background: #FFF1C2;
+border-radius: 10px;
+flex: none;
+margin-left: 25px;
+margin-top: 70px;
+border: 1px solid #900b09;
+}
+
+.btn-sidebar{
+  width: 100px;
+  height: auto;
+}
