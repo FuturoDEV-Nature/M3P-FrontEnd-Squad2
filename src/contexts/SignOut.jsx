@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 
 export function SignOut () {
-    localStorage.removeItem('@natureza365:user');
+    localStorage.removeItem('token');
+    localStorage.removeItem('user')
   
     return(
         <>
