@@ -1,14 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 export function TemplatePrivado() {
-  const user = localStorage.getItem("@natureza365:user");
+  const token = localStorage.getItem("token");
 
   let estaAutenticado = false;
 
   try {
-    const userObj = JSON.parse(user);
 
-    if (userObj && userObj.email && userObj.senha) {
+    if (token) {
       estaAutenticado = true;
     }
   } catch (e) {
