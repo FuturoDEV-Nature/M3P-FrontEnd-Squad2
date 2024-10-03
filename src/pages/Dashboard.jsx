@@ -5,17 +5,18 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { Marcadores } from "../components/Marcadores";
 import "leaflet/dist/leaflet.css";
 import "../pages/Dashboard.css";
+import useAxios from "../hooks/useAxios";
 
 function Dashboard() {
   //DOIS QUADROS - usuarios
-
+  
   const [numeroDeUsuarios, setNumeroDeUsuarios] = useState(0);
 
   useEffect(() => {
-    const carregarUsuarios = async () => {
+    const carregarUsuarios = async (data) => {
       try {
-        const resposta = await fetch("http://localhost:3000/users");
-        const dados = await resposta.json();
+        const resposta = await useAxios.get("/usuarios", data);
+        const dados = resposta.data;
         console.log(dados);
         setNumeroDeUsuarios(Object.keys(dados).length);
       } catch (error) {
@@ -29,10 +30,10 @@ function Dashboard() {
   const [numeroDeLocais, setNumeroDeLocais] = useState(0);
 
   useEffect(() => {
-    const carregarLocais = async () => {
+    const carregarLocais = async (data) => {
       try {
-        const resposta = await fetch("http://localhost:3000/locais");
-        const dados = await resposta.json();
+        const resposta = await useAxios.get("/destino", data);
+        const dados = resposta.data;
         console.log(dados);
         setNumeroDeLocais(Object.keys(dados).length);
       } catch (error) {
@@ -45,12 +46,16 @@ function Dashboard() {
   // TABELA GRANDE
   const [locais, setLocais] = useState([]);
 
-  async function carregarDados() {
-    const resposta = await fetch("http://localhost:3000/locais");
-    setLocais(await resposta.json());
-  }
-
   useEffect(() => {
+    const carregarDados = async (data) => {
+      try {
+        const resposta = await useAxios.get("/destino", data);
+        const dados = resposta.data;
+        setLocais(dados);
+      } catch (error) {
+        console.error("Erro ao carregar os dados:", error);
+      }
+    };
     carregarDados();
   }, []);
 
@@ -87,8 +92,9 @@ function Dashboard() {
               <tbody>
                 {locais.map((local) => (
                   <tr key={local.id}>
+                    <td className="nomes2">{local.endereco}</td>
+                    <td className="nomes">{local.descricao}</td>
                     <td className="nomes">{local.nomelocal}</td>
-                    <td className="nomes2">{local.descricao}</td>
                   </tr>
                 ))}
               </tbody>
@@ -103,7 +109,15 @@ function Dashboard() {
               className="mapa-dash"
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <Marcadores locais={locais}></Marcadores>
+              {locais.map((local) =>
+                local.latitude && local.longitude ? ( 
+                  <Marcadores
+                  destino={locais}
+                    key={local.id}
+                    position={[local.lat, local.lng]}                    
+                  />
+                ) : null
+              )}
             </MapContainer>
           </div>
         </div>
