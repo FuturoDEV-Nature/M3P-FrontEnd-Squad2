@@ -6,7 +6,7 @@ const useAxios = axios.create({
 
 useAxios.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('@natureza365:token'); 
+        const token = localStorage.getItem('token'); 
 
         if (token) {
             config.headers.Authorization = `${token}`;
