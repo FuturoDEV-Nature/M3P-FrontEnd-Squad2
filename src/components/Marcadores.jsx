@@ -2,12 +2,12 @@ import propTypes from 'prop-types';
 import { useEffect } from 'react';
 import { Marker, Popup, useMap } from 'react-leaflet'
 
-export function Marcadores ({ destino} ) {
+export function Marcadores ({ destino = []} ) {
 
     const map = useMap()
     
     useEffect(() => {
-        if(destino.length > 0 ){
+        if(Array.isArray(destino) && destino.length > 0 ){
             const primeiroLocaldaLista = destino[0]
             map.flyTo({
                 lat: primeiroLocaldaLista.latitude,
@@ -23,7 +23,7 @@ export function Marcadores ({ destino} ) {
         <>
         {Array.isArray(destino) && destino.map((local) => (
             <Marker
-                key={local.nome}
+                key={local.id}
                 position={[local.latitude, local.longitude]}
             >
                 <Popup key={local.popup}> 
