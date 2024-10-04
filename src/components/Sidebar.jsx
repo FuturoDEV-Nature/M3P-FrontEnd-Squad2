@@ -28,7 +28,7 @@ export function Sidebar() {
             <h2> Listagem de Locais </h2>
             <button className="btn-sidebar">
               <ListCollapse size={16} />
-              <Link to="/listagemlocais">Listagem Locais</Link>
+              <Link to="/destino">Listagem Locais</Link>
             </button>
           </div>
         </div>

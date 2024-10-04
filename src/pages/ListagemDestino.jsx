@@ -5,46 +5,53 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { Marcadores } from "../components/Marcadores";
 import { MapPin, Pencil, Trash } from "lucide-react";
 import 'leaflet/dist/leaflet.css';
-import '../pages/ListagemLocais.css'
-import { AuthContext } from "../contexts/AuthContext";
+import '../pages/ListagemDestino.css'
+// import { AuthContext } from "../contexts/AuthContext";
+import useAxios from "../hooks/useAxios";
 
-function ListagemLocais() {
-  const { user } = useContext(AuthContext);
+function ListagemDestino() {
+  // const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [lista, setLista] = useState([]);
+  // const [lista, setLista] = useState([]);  
+  const [locais, setLocais] = useState([]);
 
-  async function carregarDados() {
-    if (!user) return;
-
-    try {
-      const resposta = await fetch(`http://localhost:3000/locais?userId=${user.id}`);
-      const locais = await resposta.json();
-      setLista(locais);
-    } catch (error) {
-      console.error("Erro ao carregar dados:", error);
-    }
-  }
+useEffect(() => {
+    const carregarDados = async (data) => {
+      try {
+        const userData = localStorage.getItem("user");
+        if (userData) {
+          const user = JSON.parse(userData); 
+          console.log(user.id); 
+          const resposta = await useAxios.get(`/destino/local/${user.id}`, data);       
+          console.log(resposta.data);  
+          const dados = resposta.data;
+          console.log(dados)
+          setLocais(dados);          
+        } else {
+          console.error("Usuário não encontrado no localStorage.");
+        }
+      } catch (error) {
+        console.error("Erro ao carregar os dados:", error);
+      }
+    };    
+    carregarDados();
+  }, []); 
 
   useEffect(() => {
-    carregarDados();
-  }, [user]);
+    console.log("Locais atualizados:", locais);
+  }, [locais]);
 
   //MAPA
-  const [locais, setLocais] = useState([]);
   const coordenadaInicial = [-27.59249003298383, -48.56058625979836]
 
   //EXCLUIR
-
   async function excluirLocal(id) {
     const confirmacao = window.confirm("Tem certeza de que deseja excluir este local?");
   
     if (confirmacao) {
       try {
-        await fetch(`http://localhost:3000/locais/${id}`, {
-          method: 'DELETE',
-        });
-  
-        setLista(lista.filter(local => local.id !== id));
+        await useAxios.delete(`/destino/${id}`, );  
+        setLocais(locais.filter(local => local.id !== id));
       } catch (error) {
         alert("Houve um erro ao excluir o local.");
       }
@@ -60,25 +67,26 @@ function ListagemLocais() {
 
         <div>
         <button className="btn-cadastrar-listagem" onClick={() => navigate("/cadastrolocais")}>
-        <MapPin size={16}/> Cadastrar</button>
+        <MapPin size={16}/> Cadastrar </button>
         </div>
 
         <div className="tabela-container">
             <table> 
             <tbody>
-            {lista.map((local) => (
+            {locais.map((local) => (
               <tr key={local.id}>
-                <td className="nome-listagem">{local.nomelocal}</td>
-                <td className="mapa-listagem">
-                  <MapContainer
+               <td className="nomes2">{local.endereco}</td>
+               <td className="nomes">{local.descricao}
+                  {/* <MapContainer
                     center={coordenadaInicial}
                     zoom={8}
                     className="mapa-dashboard"
                   >
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                     <Marcadores locais={locais}></Marcadores>
-                  </MapContainer>
-                </td>
+                  </MapContainer> */}
+                </td>             
+          
                 <td className="botao-coluna"> 
                   <Link to={`/cadastrolocais/${local.id}`}>
                     <button className="btn-editar-listagem">
@@ -89,7 +97,7 @@ function ListagemLocais() {
                   <button className="btn-excluir-listagem" onClick={() => excluirLocal(local.id)}>
                     <Trash size={16}/>Excluir</button>
                 </td>
-              </tr>
+            </tr>
             ))}
           </tbody>
         </table>
@@ -100,4 +108,4 @@ function ListagemLocais() {
   );
 }
 
-export default ListagemLocais;
+export default ListagemDestino;
