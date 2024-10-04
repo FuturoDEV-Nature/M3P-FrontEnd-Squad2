@@ -7,7 +7,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import CadastroUsuario from "./pages/CadastroUsuario";
 import CadastroLocais from "./pages/CadastroLocais";
-import ListagemLocais from "./pages/ListagemLocais";
+import ListagemDestino from "./pages/ListagemDestino";
 
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/cadastrolocais' element={<CadastroLocais />} />
               <Route path='/cadastrolocais/:id' element={<CadastroLocais />} />
-              <Route path='/listagemlocais' element={<ListagemLocais />} />
+              <Route path='/destino' element={<ListagemDestino />} />
               <Route path='/signout' element={<SignOut />} />
             </Route>
           </Routes>
