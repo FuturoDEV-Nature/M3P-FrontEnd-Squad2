@@ -23,6 +23,7 @@ function App() {
               <Route path='/cadastrolocais' element={<CadastroLocais />} />
               <Route path='/cadastrolocais/:id' element={<CadastroLocais />} />
               <Route path='/destino' element={<ListagemDestino />} />
+              <Route path='/destino/:id' element={<ListagemDestino />} />
               <Route path='/signout' element={<SignOut />} />
             </Route>
           </Routes>

@@ -48,17 +48,16 @@ function ListagemDestino() {
   const coordenadaInicial = [-27.59249003298383, -48.56058625979836];
 
   //EXCLUIR
-  async function excluirLocal(id) {
+  async function excluirLocal(id) {   
     const confirmacao = window.confirm(
       "Tem certeza de que deseja excluir este local?"
-    );
-
-    if (confirmacao) {
-      try {
-        await useAxios.delete(`/destino/${id}`);
-        setLocais(locais.filter((local) => local.id !== id));
+    );    
+    if (confirmacao) {      
+      try {                    
+        await useAxios.delete(`/destino/${id}`);   
+        setLocais(locais.filter((local) => local.destino_id !== id));    
       } catch (error) {
-        alert("Houve um erro ao excluir o local.");
+        alert("Houve um erro ao excluir o local");
       }
     }
   }
@@ -100,7 +99,7 @@ function ListagemDestino() {
                     <td className="botao-coluna">
                       <button
                         className="btn-excluir-listagem"
-                        onClick={() => excluirLocal(local.id)}
+                        onClick={() => excluirLocal(local.destino_id)}
                       >
                         <Trash size={16} />
                         Excluir
