@@ -2,33 +2,29 @@ import { useNavigate, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import "../pages/CadastroUsuario.css";
+import useAxios from "../hooks/useAxios"
 
 async function verificarCPF(cpf) {
-  const resposta = await fetch(`http://localhost:3000/users?cpf=${cpf}`);
-  const usuarios = await resposta.json();
-  return usuarios.length === 0;
+  const resposta = await useAxios.get(`/usuario/${cpf}`);
+  return resposta;
 }
 
 async function addUsers(values) {
   try {
     const cpfUnico = await verificarCPF(values.cpf);
 
-    if (!cpfUnico) {
+    if (cpfUnico.status == 409) {
       alert("Já existe um usuário cadastrado com este CPF.");
       return false;
     }
 
-    console.log(values);
-
-    const resposta = await fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: {
+    const resposta = await useAxios.post("/usuario", values, {
+        headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
+      }
     });
-
-    if (!resposta.ok) {
+   
+    if (resposta.status != 201) {
       alert("Houve um erro ao cadastrar o usuário");
       return false;
     } else {
@@ -36,7 +32,7 @@ async function addUsers(values) {
       return true;
     }
   } catch (error) {
-    alert("Houve um erro ao cadastrar o usuário - no catch");
+    alert("Houve um erro ao cadastrar o usuário - no catch", error);
     return false;
   }
 }
