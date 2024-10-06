@@ -16,7 +16,10 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Routes>
+            <Route path='/usuario' element={<CadastroUsuario />} />
+            <Route path='/usuario/:cpf' element={<CadastroUsuario />} />
             <Route path='/cadastrousuario' element={<CadastroUsuario />} />
+            <Route path='/cadastrousuario/:cpf' element={<CadastroUsuario />} /> 
             <Route path='/' element={<Home />} />
             <Route element={<TemplatePrivado />}>
               <Route path='/dashboard' element={<Dashboard />} />
