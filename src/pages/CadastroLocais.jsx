@@ -7,34 +7,66 @@ import { useEffect, useState, useContext } from "react";
 import { MapPin } from "lucide-react";
 import { AuthContext } from "../contexts/AuthContext";
 import "../pages/CadastroLocais.css";
+import useAxios from '../hooks/useAxios'; 
 
 async function saveLocal(values, isEditMode) {
+  const axiosInstance = useAxios;
+
   try {
     const url = isEditMode
-      ? `http://localhost:3000/locais/${values.id}`
-      : "http://localhost:3000/locais";
+      ? `/destino/${values.id}` 
+      : "/destino"; 
+
     const method = isEditMode ? "PUT" : "POST";
 
-    const resposta = await fetch(url, {
+    const resposta = await axiosInstance({
       method: method,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
+      url: url,
+      data: values, 
     });
 
-    if (!resposta.ok) {
-      alert("Houve um erro ao salvar o local");
-      return false;
-    } else {
+    if (resposta.status >= 200 && resposta.status < 300) {
       alert("Local salvo com sucesso");
       return true;
+    } else {
+      alert("Houve um erro ao salvar o local");
+      return false;
     }
   } catch (error) {
     alert("Houve um erro ao salvar o local - no catch");
+    console.error("Erro:", error); 
     return false;
   }
 }
+
+
+// async function saveLocal(values, isEditMode) {
+//   try {
+//     const url = isEditMode
+//       ? `http://localhost:3000/locais/${values.id}`
+//       : "http://localhost:3000/locais";
+//     const method = isEditMode ? "PUT" : "POST";
+
+//     const resposta = await fetch(url, {
+//       method: method,
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(values),
+//     });
+
+//     if (!resposta.ok) {
+//       alert("Houve um erro ao salvar o local");
+//       return false;
+//     } else {
+//       alert("Local salvo com sucesso");
+//       return true;
+//     }
+//   } catch (error) {
+//     alert("Houve um erro ao salvar o local - no catch");
+//     return false;
+//   }
+// }
 
 async function buscarEndereco(cep) {
   try {
@@ -56,7 +88,7 @@ async function buscarEndereco(cep) {
 function RedCadastroLocal() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { id, destino_id } = useParams();
   const { register, formState, handleSubmit, setValue } = useForm();
   const [isEditMode, setIsEditMode] = useState(false);
   const [cep, setCep] = useState("");
@@ -69,8 +101,10 @@ function RedCadastroLocal() {
   }, [id]);
 
   const fetchLocalData = async (id) => {
-    const resposta = await fetch(`http://localhost:3000/locais/${id}`);
-    const data = await resposta.json();
+ 
+    const resposta = await useAxios.get(`/destino/${destino_id}`);
+    // setLocais(locais.filter((local) => local.destino_id !== id));  
+    const data = resposta.data;
 
     for (const key in data) {
       setValue(key, data[key]);
@@ -81,6 +115,9 @@ function RedCadastroLocal() {
     if (user) {
       values.userId = user.id; // Adiciona o ID do usuário
     }
+    if (isEditMode) {
+      values.id = id; // Adiciona o ID do destino ao objeto values
+  }
     const sucesso = await saveLocal(values, isEditMode);
     if (sucesso) {
       navigate("/dashboard");
