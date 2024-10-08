@@ -15,7 +15,7 @@ function Dashboard() {
   useEffect(() => {
     const carregarUsuarios = async (data) => {
       try {
-        const resposta = await useAxios.get("/usuarios", data);
+        const resposta = await useAxios.get("/usuario", data);
         const dados = resposta.data;
         console.log(dados);
         setNumeroDeUsuarios(Object.keys(dados).length);
