@@ -79,7 +79,8 @@ function ListagemDestino() {
             <table>
               <tbody>
                 {locais.map((local) => (
-                  <tr key={local.id}>
+                  <tr key={local.id}> 
+                  <td className="nomes">{local.nomelocal}</td>
                     <td className="nomes2">{local.endereco}</td>
                     <td className="nomes">
                       {local.descricao}
