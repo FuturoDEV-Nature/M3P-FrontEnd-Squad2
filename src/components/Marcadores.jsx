@@ -11,6 +11,7 @@ export function Marcadores({ destino = [] }) {
     useEffect(() => {
         if (destinosArray.length > 0) {
             const primeiroLocaldaLista = destinosArray[0];
+            if (primeiroLocaldaLista.latitude && primeiroLocaldaLista.longitude)
             map.flyTo(
                 {
                     lat: primeiroLocaldaLista.latitude,
@@ -25,12 +26,14 @@ export function Marcadores({ destino = [] }) {
     return (
         <>
             {destinosArray.map((local) => (
+                local.latitude != null && local.longitude != null ? (
                 <Marker key={local.destino_id} position={[local.latitude, local.longitude]}>
                     <Popup>
                         <strong>{local.nomelocal}</strong>
                         <p>{local.descricao}</p>
                     </Popup>
                 </Marker>
+                ) : null
             ))}
         </>
     );
