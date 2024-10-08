@@ -110,7 +110,7 @@ function Dashboard() {
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
               {locais.map((local) =>
-                local.latitude && local.longitude ? ( 
+                (local.latitude !=null && local.longitude !=null) ? ( 
                   <Marcadores
                   destino={locais}
                     key={local.id}

@@ -52,7 +52,7 @@ function Home() {
               <LogIn size={16} />
               Entrar
             </button>
-            <Link to="/CadastroUsuario">
+            <Link to="/usuario">
               <button className="btn-home btn-home-cadastrar">
                 <UsersRound size={16} />
                 Cadastrar
