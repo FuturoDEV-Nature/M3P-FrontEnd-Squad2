@@ -69,7 +69,7 @@ function ListagemDestino() {
           <div>
             <button
               className="btn-cadastrar-listagem"
-              onClick={() => navigate("/cadastrolocais")}
+              onClick={() => navigate("/destino/cadastrolocais")}
             >
               <MapPin size={16} /> Cadastrar{" "}
             </button>
@@ -86,7 +86,7 @@ function ListagemDestino() {
                       </td>
 
                       <td className="botao-coluna">
-                      <Link to={`/cadastrolocais/${local.destino_id}`}>
+                      <Link to={`/destino/cadastrolocais/${local.destino_id}`}>
                         <button className="btn-editar-listagem">
                           <Pencil size={16} />
                           Editar
