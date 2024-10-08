@@ -21,7 +21,7 @@ export function Sidebar() {
             <h2> Cadastro de Locais </h2>
             <button className="btn-sidebar">
               <MapPin size={16} />
-              <Link to="/cadastrolocais">Cadastro Locais</Link>
+              <Link to="/destino/cadastrolocais">Cadastro Locais</Link>
             </button>
           </div>
           <div className="quadro">
