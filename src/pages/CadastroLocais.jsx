@@ -19,6 +19,8 @@ async function saveLocal(values, isEditMode) {
 
     const method = isEditMode ? "PUT" : "POST";
 
+    console.log("values", values);
+
     const resposta = await axiosInstance({
       method: method,
       url: url,
@@ -92,6 +94,7 @@ function RedCadastroLocal() {
   const { register, formState, handleSubmit, setValue } = useForm();
   const [isEditMode, setIsEditMode] = useState(false);
   const [cep, setCep] = useState("");
+  const [locais, setLocais] = useState([]);
 
   useEffect(() => {
     if (id) {
@@ -101,10 +104,12 @@ function RedCadastroLocal() {
   }, [id]);
 
   const fetchLocalData = async (id) => {
- 
-    const resposta = await useAxios.get(`/destino/${destino_id}`);
-    // setLocais(locais.filter((local) => local.destino_id !== id));  
+    const resposta = await useAxios.get(`/destino/${id}`);
     const data = resposta.data;
+    setLocais(data);
+    setCep(data.cep)
+
+    console.log("data", data);
 
     for (const key in data) {
       setValue(key, data[key]);
@@ -136,7 +141,7 @@ function RedCadastroLocal() {
   };
 
   //MAPA
-  const [locais, setLocais] = useState([]);
+  
   const coordenadaInicial = [-27.59249003298383, -48.56058625979836];
 
   return (
@@ -271,7 +276,7 @@ function RedCadastroLocal() {
               className="mapa-cadastro"
             >
               <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-              <Marcadores locais={locais}></Marcadores>
+              <Marcadores destino={locais}></Marcadores>
             </MapContainer>
           </div>
         </div>
