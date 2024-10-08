@@ -17,14 +17,14 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path='/usuario' element={<CadastroUsuario />} />
-            <Route path='/usuario/:cpf' element={<CadastroUsuario />} />
-            <Route path='/cadastrousuario' element={<CadastroUsuario />} />
-            <Route path='/cadastrousuario/:cpf' element={<CadastroUsuario />} /> 
+            {/* <Route path='/usuario/:cpf' element={<CadastroUsuario />} />
+            <Route path='/cadastrousuario' element={<CadastroUsuario />} /> */}
+            {/* <Route path='/cadastrousuario/:cpf' element={<CadastroUsuario />} />  */}
             <Route path='/' element={<Home />} />
             <Route element={<TemplatePrivado />}>
               <Route path='/dashboard' element={<Dashboard />} />
-              <Route path='/cadastrolocais' element={<CadastroLocais />} />
-              <Route path='/cadastrolocais/:id' element={<CadastroLocais />} />
+              <Route path='/destino/cadastrolocais' element={<CadastroLocais />} />
+              <Route path='/destino/cadastrolocais/:id' element={<CadastroLocais />} />
               <Route path='/destino' element={<ListagemDestino />} />
               <Route path='/destino/:id' element={<ListagemDestino />} />
               <Route path='/signout' element={<SignOut />} />
