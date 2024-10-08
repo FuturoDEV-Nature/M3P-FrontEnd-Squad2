@@ -21,14 +21,11 @@ function ListagemDestino() {
         const userData = localStorage.getItem("user");
         if (userData) {
           const user = JSON.parse(userData);
-          console.log(user.id);
           const resposta = await useAxios.get(
             `/destino/local/${user.id}`,
             data
           );
-          console.log(resposta.data);
           const dados = resposta.data;
-          console.log(dados);
           setLocais(dados);
         } else {
           console.error("Usuário não encontrado no localStorage.");
@@ -89,7 +86,7 @@ function ListagemDestino() {
                       </td>
 
                       <td className="botao-coluna">
-                      <Link to={`/cadastrolocais/${local.id}`}>
+                      <Link to={`/cadastrolocais/${local.destino_id}`}>
                         <button className="btn-editar-listagem">
                           <Pencil size={16} />
                           Editar
