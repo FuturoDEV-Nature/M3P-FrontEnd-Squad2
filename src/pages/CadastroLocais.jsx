@@ -14,8 +14,8 @@ async function saveLocal(values, isEditMode) {
 
   try {
     const url = isEditMode
-      ? `/destino/${values.id}` 
-      : "/destino"; 
+      ? `/destino/cadastrolocais/${values.id}` 
+      : "/destino/cadastrolocais"; 
 
     const method = isEditMode ? "PUT" : "POST";
 
@@ -104,7 +104,7 @@ function RedCadastroLocal() {
   }, [id]);
 
   const fetchLocalData = async (id) => {
-    const resposta = await useAxios.get(`/destino/${id}`);
+    const resposta = await useAxios.get(`/destino/cadastrolocais/${id}`);
     const data = resposta.data;
     setLocais(data);
     setCep(data.cep)
