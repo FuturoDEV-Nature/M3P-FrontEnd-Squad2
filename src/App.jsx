@@ -21,8 +21,8 @@ function App() {
             <Route path='/cadastrousuario' element={<CadastroUsuario />} /> */}
             {/* <Route path='/cadastrousuario/:cpf' element={<CadastroUsuario />} />  */}
             <Route path='/' element={<Home />} />
+            <Route path='/dashboard' element={<Dashboard />} /> {/* Rota movida de privada para pública ANA */}
             <Route element={<TemplatePrivado />}>
-              <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/destino/cadastrolocais' element={<CadastroLocais />} />
               <Route path='/destino/cadastrolocais/:id' element={<CadastroLocais />} />
               <Route path='/destino' element={<ListagemDestino />} />
