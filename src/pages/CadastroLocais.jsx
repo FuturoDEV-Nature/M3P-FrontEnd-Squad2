@@ -19,12 +19,16 @@ async function saveLocal(values, isEditMode) {
 
     const method = isEditMode ? "PUT" : "POST";
 
-    console.log("values", values);
-
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      const user = JSON.parse(userData);
+      values.usuario_id =user.id
+    }
+    
     const resposta = await axiosInstance({
       method: method,
       url: url,
-      data: values, 
+      data: values
     });
 
     if (resposta.status >= 200 && resposta.status < 300) {
@@ -105,6 +109,7 @@ function RedCadastroLocal() {
 
   const fetchLocalData = async (id) => {
     const resposta = await useAxios.get(`/destino/cadastrolocais/${id}`);
+    console.log("resposta", resposta);
     const data = resposta.data;
     setLocais(data);
     setCep(data.cep)
