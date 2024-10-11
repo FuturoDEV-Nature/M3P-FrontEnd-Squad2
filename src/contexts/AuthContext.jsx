@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import axios from "axios"
 
 export const AuthContext = createContext({
     user: null,
@@ -16,32 +17,32 @@ export function AuthProvider({ children }) {
         }
     }, []);
 
-    async function signIn(data) {
+    async function signIn(dados) {
         try {
-            const response = await fetch(`http://localhost:3000/users?email=${data.email}&senha=${data.senha}`);
-            const users = await response.json();
-    
-            if (users.length === 0) {
-                throw new Error("Email/Senha inválida");
-            }
-    
-            if (users.length > 0) {
-                const loggedInUser = users[0];
-                setUser(loggedInUser); 
-                localStorage.setItem('@natureza365:user', JSON.stringify(loggedInUser)); 
-                return true;                 
-            } else {
-                return false;
-            }
-    
-        } catch (error) {
-            console.error('Error during signIn:', error);
-            return false;
+        const response = await axios.post("http://localhost:3000/login", {
+            email:dados.email,
+            senha:dados.senha
+        })
+        if (response.status === 200) {
+            let token = response.data.token;
+            let user = response.data.user;
+
+            // const resposta = await axios.post("/usuario/islogado")
+            // console.log(resposta)
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
+
+            return true
         }
+        } catch (error){
+            console.log(error)
+        }
+        return false
     }
 
     async function signOut() {
-        localStorage.removeItem('@natureza365:user');
+        localStorage.removeItem('user');
         setUser(null);
     }
 
