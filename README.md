@@ -5,8 +5,16 @@ Permite cadastrar usuários e locais da natureza vinculados ao mesmo. É possív
 
 Projeto criado utilizando JavaScript e React. 
 
+## Para criação de um projeto Vite 
+npm create vite@latest nome-do-projeto 
 
 ## Instalação de bibliotecas
+npm install axios
+
+npm install jsonwebtoken 
+
+npm install vite --save-dev 
+
 npm install react-router-dom
 
 npm i prop-types
@@ -19,12 +27,7 @@ npm install leaflet react-leaflet
 
 npm install json-server --save-dev
 
-## No terminal, comando para API ficar disponível
-```bash
-  npx json-server database.json
-```
-
-## Abrir outro terminal, comando para aplicação rodar:
+## No terminal, comando para aplicação rodar:
 ```bash
   npm run dev
 ```
@@ -40,9 +43,8 @@ Incluir mais validações dos dados;
 
 Compartilhamento dos locais entre os usuários;
 
+Implementar a resposividade da tela;
 
-## Feedback
+Permitir ao usuário incluir fotos dos locais;
 
-Se você tiver algum feedback, por favor nos deixe saber por meio de paulaengler@live.com
-
-## Link do video
+Compartilhar locais com amigos nas redes sociais.
