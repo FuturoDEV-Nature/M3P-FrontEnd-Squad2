@@ -17,7 +17,7 @@ async function addUsers(values) {
       alert("Já existe um usuário cadastrado com este CPF.");
       return false;
     }
-    console.log(values)
+    console.log("addUsers", values)
     const resposta = await useAxios.post("/usuario", values, {
         headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function CadastroUsuario() {
   const handleBuscarEndereco = async () => {
     const endereco = await buscarEndereco(cep);
     if (endereco) {
-      setValue("endereço", endereco.logradouro);
+      setValue("endereco", endereco.logradouro);
       setValue("numero", endereco.numero || "");
       setValue("bairro", endereco.bairro);
       setValue("cidade", endereco.localidade);
@@ -179,7 +179,7 @@ function CadastroUsuario() {
               className="usuario-input"
               type="password"
               placeholder="Digite a senha"
-              {...register("senha", { required: "O email é obrigatório" })}
+              {...register("senha", { required: "A senha é obrigatória" })}
             />
             {formState.errors?.senha?.message}
           </div>
@@ -190,7 +190,7 @@ function CadastroUsuario() {
               className="usuario-input"
               type="string"
               placeholder="Digite ao endereço"
-              {...register("endereco", { required: "O email é obrigatório" })}
+              {...register("endereco", { required: "O endereço é obrigatório" })}
             />
             {formState.errors?.endereço?.message}
           </div>
@@ -200,7 +200,7 @@ function CadastroUsuario() {
             <input
               className="usuario-input"
               placeholder="Digite o número do endereço"
-              {...register("numero", { required: "O email é obrigatório" })}
+              {...register("numero", { required: "O número é obrigatório" })}
             />
             {formState.errors?.numero?.message}
           </div>
