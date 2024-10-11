@@ -116,7 +116,7 @@ function Dashboard() {
           {/* isLogado****** */}
           <div className="quadro-dash">
               <h2>Logados</h2>
-              <MapPin size={16} />
+              <UsersRound size={16} />
               <p>{numeroDeLogados}</p>
             </div>
           </div>
@@ -131,9 +131,9 @@ function Dashboard() {
               <tbody>
                 {locais.map((local) => (
                   <tr key={local.id}>
-                    <td className="nomes2">{local.endereco}</td>
-                    <td className="nomes">{local.descricao}</td>
                     <td className="nomes">{local.nomelocal}</td>
+                    {/* <td className="nomes2">{local.endereco}</td> */}
+                    <td className="nomes2">{local.descricao}</td>                    
                   </tr>
                 ))}
               </tbody>
