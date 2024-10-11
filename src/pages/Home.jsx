@@ -243,7 +243,7 @@ function Home() {
 
         <div className="dashboard">
           <div className="main-content">
-            <h2> DASHBOARD </h2>
+            {/* <h2> DASHBOARD </h2> */}
 
             <div className="quadros">
               {/* DOIS QUADROS */}
@@ -262,7 +262,7 @@ function Home() {
           {/* isLogado****** */}
           <div className="quadro-dash">
               <h2>Logados</h2>
-              <MapPin size={16} />
+              <UsersRound size={16} />
               <p>{numeroDeLogados}</p>
             </div>
           </div>
@@ -270,15 +270,16 @@ function Home() {
 
             {/* TABELA GRANDE */}
             <div className="tabela-dash">
-              <h3> Locais e Descrição </h3>
+              {/* <h3> Locais e Descrição </h3> */}
               <table>
                 <thead></thead>
                 <tbody>
                   {locais.map((local) => (
                     <tr key={local.id}>
+                      <td className="nomes">{local.nomelocal}</td>
                       <td className="nomes2">{local.endereco}</td>
                       <td className="nomes">{local.descricao}</td>
-                      <td className="nomes">{local.nomelocal}</td>
+                      
                     </tr>
                   ))}
                 </tbody>
