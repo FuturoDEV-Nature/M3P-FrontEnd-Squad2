@@ -17,12 +17,13 @@ async function addUsers(values) {
       alert("Já existe um usuário cadastrado com este CPF.");
       return false;
     }
-
+    console.log(values)
     const resposta = await useAxios.post("/usuario", values, {
         headers: {
         "Content-Type": "application/json",
-      }
-    });
+      },
+      // body: JSON.stringify(values),
+    });  
    
     if (resposta.status != 201) {
       alert("Houve um erro ao cadastrar o usuário");
@@ -32,6 +33,7 @@ async function addUsers(values) {
       return true;
     }
   } catch (error) {
+    console.error("Erro ao cadastrar o usuário:", error.response?.data || error.message);
     alert("Houve um erro ao cadastrar o usuário - no catch", error);
     return false;
   }
@@ -126,7 +128,7 @@ function CadastroUsuario() {
               className="usuario-input"
               type="date"
               placeholder="Digite a data de nascimento"
-              {...register("nascimento", {
+              {...register("dataNascimento", {
                 required: "A data de nascimento é obrigatória",
               })}
             />
@@ -188,7 +190,7 @@ function CadastroUsuario() {
               className="usuario-input"
               type="string"
               placeholder="Digite ao endereço"
-              {...register("endereço", { required: "O email é obrigatório" })}
+              {...register("endereco", { required: "O email é obrigatório" })}
             />
             {formState.errors?.endereço?.message}
           </div>
@@ -209,6 +211,7 @@ function CadastroUsuario() {
               className="usuario-input"
               type="text"
               placeholder="Digite o CEP do endereço"
+              {...register("cep", { required: "O CEP é obrigatório" })}              
               value={cep}
               onChange={(e) => setCep(e.target.value)}
             />
