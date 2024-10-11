@@ -100,6 +100,31 @@ function Home() {
   const { register, formState, handleSubmit } = useForm();
   const navigate = useNavigate();
 
+    //******isLogado******
+  
+ 
+    const [numeroDeLogados, setNumeroDeLogados] = useState(0);
+
+    useEffect(() => {
+      const token = localStorage.getItem('token')
+        const carregarLogados = async () => {
+            try {
+                const resposta = await useAxios.get("/usuario/countlogados", {
+                    headers: {
+                        Authorization: `Bearer ${token}` 
+                    }
+                });
+                const dados = resposta.data;
+                console.log(dados);
+                setNumeroDeLogados(dados);
+            } catch (error) {
+                console.error("Erro ao carregar os dados:", error);
+            }
+        };
+  
+        carregarLogados();
+    }, []); 
+
   // DOIS QUADROS - usuarios
   const [numeroDeUsuarios, setNumeroDeUsuarios] = useState(0);
 
@@ -233,7 +258,15 @@ function Home() {
                 <MapPin size={16} />
                 <p>{numeroDeLocais}</p>
               </div>
+
+          {/* isLogado****** */}
+          <div className="quadro-dash">
+              <h2>Logados</h2>
+              <MapPin size={16} />
+              <p>{numeroDeLogados}</p>
             </div>
+          </div>
+
 
             {/* TABELA GRANDE */}
             <div className="tabela-dash">

@@ -27,6 +27,9 @@ export function AuthProvider({ children }) {
             let token = response.data.token;
             let user = response.data.user;
 
+            // const resposta = await axios.post("/usuario/islogado")
+            // console.log(resposta)
+
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
 
@@ -39,7 +42,7 @@ export function AuthProvider({ children }) {
     }
 
     async function signOut() {
-        localStorage.removeItem('@natureza365:user');
+        localStorage.removeItem('user');
         setUser(null);
     }
 
